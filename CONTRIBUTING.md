@@ -18,7 +18,7 @@ bug reports, documentation fixes, tests, and well-scoped features.
 npm --prefix apps/desktop install
 npm --prefix apps/desktop run build
 cargo check
-cargo test
+cargo test --workspace
 npm --prefix apps/desktop test
 ```
 
@@ -35,10 +35,9 @@ server usage, live smoke tests, and release builds.
    ```powershell
    cargo fmt --all
    cargo clippy --all-targets -- -D warnings
-   cargo test
+   cargo test --workspace
    npm --prefix apps/desktop run build
    npm --prefix apps/desktop test
-   cargo check -p nexdownload-desktop
    ```
 
 4. Update documentation and `CHANGELOG.md` when behavior, configuration, API, or

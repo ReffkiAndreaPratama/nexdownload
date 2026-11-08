@@ -47,6 +47,16 @@ This starts Vite on `127.0.0.1:1420` and the Tauri shell. The shell:
 The frontend discovers the actual base URL and token at startup. No token is hard-coded
 in the bundle.
 
+For a non-bundled local build:
+
+```powershell
+npm --prefix apps/desktop run tauri build -- --debug --no-bundle
+```
+
+The 0.1.0 debug build was launched on Windows during verification. The process opened a
+window titled `NexDownload`, served `/api/v1/health` from its embedded API, and was then
+stopped cleanly.
+
 ## Run the headless server
 
 ```powershell
@@ -77,11 +87,10 @@ If the frontend directory is absent it logs a warning and serves API-only.
 ```powershell
 cargo fmt --all -- --check
 cargo clippy --all-targets -- -D warnings
-cargo test
+cargo test --workspace
 
 npm --prefix apps/desktop run build
 npm --prefix apps/desktop test
-cargo check -p nexdownload-desktop
 ```
 
 The Playwright smoke test uses a running server and is intentionally opt-in:
@@ -99,18 +108,25 @@ dashboard, and navigates to Downloads. On Windows, `scripts/e2e.ps1` builds and 
 isolated headless server, runs the browser test, and removes the temporary data
 directory. CI starts the same kind of temporary server with a known token.
 
-### Why `cargo test` rather than `cargo test --workspace`
+### Workspace tests and the desktop crate
 
-The default members exclude the Tauri desktop crate. `cargo test --workspace` includes
-the desktop crate and links its GUI shell into the test binary. On some minimal Windows
-toolchains (notably a `gnullvm` host) the resulting DLL exceeds the portable 65,535
-export limit. The supported split is:
+`cargo test --workspace` includes the Tauri desktop crate. NexDownload ships desktop
+targets only, so `apps/desktop/src-tauri/Cargo.toml` declares
+`crate-type = ["rlib"]` instead of Tauri's mobile-oriented `staticlib`/`cdylib` set.
+That also avoids the Windows gnullvm 65,535-export limit that could break the desktop
+test DLL.
 
-- `cargo test` for domain, engine, storage, API, and headless server tests;
-- `cargo check -p nexdownload-desktop` for the Tauri host;
-- `npm --prefix apps/desktop run tauri build` for a release bundle.
+Run the full local suite after installing the Tauri platform prerequisites:
 
-This is a toolchain limitation, not a skipped product test.
+```powershell
+cargo test --workspace
+npm --prefix apps/desktop run tauri build -- --debug --no-bundle
+```
+
+CI keeps the jobs split for portability: the Ubuntu Rust job runs `cargo test` over the
+default members without installing GTK/WebKit, while the Windows desktop job performs a
+non-bundled Tauri debug build. Server, engine, and storage tests therefore never depend
+on a GUI toolchain being present.
 
 ### Test coverage
 

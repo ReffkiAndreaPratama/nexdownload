@@ -45,7 +45,7 @@ extraction, scheduled time windows, and cloud sync. See [ROADMAP](docs/ROADMAP.m
 | Organization | Queues with priority/concurrency, categories by extension and destination, collections, smart rules with confirmation, history, duplicate groups |
 | Observability | Speed/ETA, progress events, analytics, per-task diagnostics, structured logs, API audit log, CSV history export |
 | Interfaces | Tauri desktop app, React UI, authenticated REST API, Manifest V3 browser extension |
-| Verification | Rust unit/integration tests, Vitest component/helper tests, Playwright browser smoke test, CI desktop check |
+| Verification | Rust unit/integration tests, Vitest component/helper tests, Playwright browser smoke test, CI desktop debug build |
 | Security | Bearer-token authentication, constant-time token comparison, request rate limiting, CORS allow-list, loopback default, explicit TLS-proxy opt-in for LAN access |
 
 ## Architecture at a glance
@@ -163,10 +163,9 @@ See [SECURITY](SECURITY.md) for reporting and operational guidance.
 ```powershell
 cargo fmt --all -- --check
 cargo clippy --all-targets -- -D warnings
-cargo test
+cargo test --workspace
 npm --prefix apps/desktop run build
 npm --prefix apps/desktop test
-cargo check -p nexdownload-desktop
 ```
 
 The live Playwright smoke test is opt-in because it needs a running server and token:
@@ -177,11 +176,15 @@ $env:NEXDOWNLOAD_E2E_URL = "http://127.0.0.1:47821"
 npm --prefix apps/desktop run test:e2e
 ```
 
-`cargo test` runs the default workspace members (core, engine, storage, API, headless
-server). The Tauri desktop crate is checked separately because its test binary links a
-GUI shell. On some minimal Windows toolchains the desktop test DLL can exceed the
-portable linker export limit; `cargo check -p nexdownload-desktop` is the supported
-verification path there.
+On Windows, `scripts/e2e.ps1` builds and starts an isolated headless server, runs the
+same browser test, and removes its temporary data directory.
+
+`cargo test --workspace` covers the core, engine, storage, API, headless server, and
+Tauri desktop crate. The desktop crate is desktop-only and builds as an `rlib`; this
+avoids the Windows gnullvm DLL export limit that affected the previous cdylib build.
+Linux workspace tests need the Tauri GTK/WebKit development packages listed in
+[DEVELOPMENT](docs/DEVELOPMENT.md). CI runs portable Rust tests on Ubuntu and a separate
+Windows job that performs a non-bundled Tauri debug build.
 
 See [DEVELOPMENT](docs/DEVELOPMENT.md) for platform setup, test design, and release
 builds.

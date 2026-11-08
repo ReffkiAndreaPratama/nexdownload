@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   rust:
-    name: Rust format, lint, and tests
+    name: Rust format, lint, and portable tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,7 +35,8 @@ jobs:
       - name: Clippy
         run: cargo clippy --all-targets -- -D warnings
 
-      - name: Tests
+      # The Tauri GUI crate is built in the separate Windows desktop job.
+      - name: Portable workspace tests
         run: cargo test
 
   frontend:
@@ -151,7 +152,7 @@ jobs:
         run: cat "$RUNNER_TEMP/nexdownload-e2e/server.log" || true
 
   desktop:
-    name: Tauri desktop check
+    name: Tauri desktop debug build
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -174,9 +175,6 @@ jobs:
         working-directory: apps/desktop
         run: npm ci
 
-      - name: Build frontend
+      - name: Build desktop executable
         working-directory: apps/desktop
-        run: npm run build
-
-      - name: Check Tauri shell
-        run: cargo check -p nexdownload-desktop
+        run: npm run tauri build -- --debug --no-bundle

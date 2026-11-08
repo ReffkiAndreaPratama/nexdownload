@@ -19,10 +19,9 @@ Push-Location $root
 try {
     Invoke-Step { cargo fmt --all -- --check } "Rust format check"
     Invoke-Step { cargo clippy --all-targets -- -D warnings } "Clippy"
-    Invoke-Step { cargo test } "Rust tests"
+    Invoke-Step { cargo test --workspace } "Rust tests"
     Invoke-Step { npm --prefix apps/desktop run build } "Frontend build"
     Invoke-Step { npm --prefix apps/desktop test } "Frontend tests"
-    Invoke-Step { cargo check -p nexdownload-desktop } "Tauri desktop check"
     Write-Host "All checks passed." -ForegroundColor Green
 }
 finally {

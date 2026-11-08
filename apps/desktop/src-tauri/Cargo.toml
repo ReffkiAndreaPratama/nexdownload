@@ -8,7 +8,9 @@ description = "NexDownload desktop shell (Tauri 2)"
 
 [lib]
 name = "nexdownload_desktop_lib"
-crate-type = ["staticlib", "cdylib", "rlib"]
+# Desktop-only build. Tauri adds staticlib/cdylib for mobile targets; keeping
+# only rlib also avoids the Windows gnullvm 65,535-export linker limit.
+crate-type = ["rlib"]
 
 [build-dependencies]
 tauri-build = { version = "2", features = [] }

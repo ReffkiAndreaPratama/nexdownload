@@ -40,8 +40,8 @@ All notable changes to NexDownload are documented here. The format is based on
   dashboard, and navigates the web client against a real headless server.
 - Documentation for architecture, API, development, security, contributing, roadmap,
   third-party notices, and licensing.
-- GitHub Actions CI for Rust formatting, clippy, tests, frontend build/tests, Playwright
-  browser tests, and the Tauri desktop check.
+- GitHub Actions CI for Rust formatting, clippy, portable tests, frontend build/tests,
+  Playwright browser tests, and a non-bundled Tauri desktop debug build.
 
 ### Fixed
 
@@ -54,7 +54,10 @@ All notable changes to NexDownload are documented here. The format is based on
   aggregates were typed as integers instead of floats. Added a regression test for empty
   and populated statistics.
 - Clippy findings in the engine, storage, and service layers.
-- `cargo test --workspace` desktop-link limitation documented in the development guide.
+- Desktop crate now builds as `rlib` for the desktop-only distribution. This removes the
+  mobile cdylib/staticlib outputs, allows `cargo test --workspace` and non-bundled Tauri
+  debug builds on Windows gnullvm, and keeps the desktop test binary under the portable
+  linker export limit.
 
 ### Security
 
