@@ -1,0 +1,42 @@
+# Rust
+/target
+**/target
+*.pdb
+
+# Node
+node_modules
+**/node_modules
+dist
+**/dist
+.vite
+coverage
+**/coverage
+*.tsbuildinfo
+apps/desktop/vite.config.js
+apps/desktop/vite.config.d.ts
+apps/desktop/tailwind.config.js
+apps/desktop/tailwind.config.d.ts
+playwright-report
+test-results
+apps/desktop/src-tauri/gen
+
+# Logs / local verification output
+*.log
+
+# Runtime data
+*.db
+*.db-shm
+*.db-wal
+data/
+downloads/
+.nexdownload/
+
+# IDE / OS
+.idea
+.vscode
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local

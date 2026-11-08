@@ -1,0 +1,22 @@
+[package]
+name = "download-storage"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "SQLite persistence for NexDownload tasks, queues, categories and analytics"
+
+[dependencies]
+chrono.workspace = true
+download-core = { path = "../download-core" }
+serde.workspace = true
+serde_json.workspace = true
+sqlx.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+uuid.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+tokio = { workspace = true, features = ["rt-multi-thread", "macros", "fs", "io-util", "time", "sync", "net"] }

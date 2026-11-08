@@ -1,0 +1,33 @@
+[package]
+name = "download-api"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "NexDownload application service and authenticated local REST API"
+
+[dependencies]
+axum.workspace = true
+chrono.workspace = true
+download-core = { path = "../download-core" }
+download-engine = { path = "../download-engine" }
+download-integrity = { path = "../download-integrity" }
+download-rules = { path = "../download-rules" }
+download-scheduler = { path = "../download-scheduler" }
+download-storage = { path = "../download-storage" }
+download-telemetry = { path = "../download-telemetry" }
+http.workspace = true
+reqwest.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+tower-http.workspace = true
+tracing.workspace = true
+url.workspace = true
+uuid.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+tokio = { workspace = true, features = ["rt-multi-thread", "macros", "fs", "io-util", "time", "sync", "net"] }

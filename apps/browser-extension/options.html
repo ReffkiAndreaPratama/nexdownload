@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NexDownload extension options</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="icons/icon128.png" alt="" width="48" height="48" />
+        <div>
+          <h1>NexDownload</h1>
+          <p>Send browser downloads to your local NexDownload app.</p>
+        </div>
+      </header>
+
+      <form id="settings">
+        <section class="card">
+          <h2>Local API</h2>
+          <label for="base-url">API URL</label>
+          <input id="base-url" type="url" required autocomplete="off" spellcheck="false" />
+          <p class="hint">
+            The default is <code>http://127.0.0.1:47821</code>. HTTPS is required when
+            the API is reached through a TLS reverse proxy.
+          </p>
+
+          <label for="token">API token</label>
+          <input id="token" type="password" required autocomplete="off" spellcheck="false" />
+          <p class="hint">
+            Copy it from NexDownload → Settings → Local API, or read the
+            <code>api-token</code> file in the application data directory. The token is
+            stored only in this browser profile.
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>Behaviour</h2>
+          <label class="check">
+            <input id="intercept" type="checkbox" />
+            <span>
+              <strong>Intercept browser downloads</strong>
+              <small>Cancel new HTTP/HTTPS downloads and queue them in NexDownload.</small>
+            </span>
+          </label>
+          <label class="check">
+            <input id="notify" type="checkbox" />
+            <span>
+              <strong>Show notifications</strong>
+              <small>Notify when a download is queued or the API needs attention.</small>
+            </span>
+          </label>
+        </section>
+
+        <div class="actions">
+          <button id="save" class="primary" type="submit">Save settings</button>
+          <button id="test" class="secondary" type="button">Test connection</button>
+          <button id="dashboard" class="link-button" type="button">Open dashboard</button>
+        </div>
+        <p id="status" class="status" role="status"></p>
+      </form>
+
+      <section class="card security">
+        <h2>Security</h2>
+        <p>
+          The API requires a bearer token on every protected endpoint. Keep NexDownload
+          bound to loopback unless you terminate TLS in front of it. Never expose the
+          token in a web page or share the API port directly on an untrusted network.
+        </p>
+      </section>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

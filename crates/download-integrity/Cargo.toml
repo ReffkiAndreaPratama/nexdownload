@@ -1,0 +1,19 @@
+[package]
+name = "download-integrity"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "File integrity and duplicate detection helpers for NexDownload"
+
+[dependencies]
+chrono.workspace = true
+hex.workspace = true
+serde.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

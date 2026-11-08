@@ -1,0 +1,21 @@
+[package]
+name = "nexdownload-server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Headless NexDownload server and local REST API"
+
+[[bin]]
+name = "nexdownloadd"
+path = "src/main.rs"
+
+[dependencies]
+directories.workspace = true
+download-api = { path = "../../crates/download-api" }
+download-storage = { path = "../../crates/download-storage" }
+download-telemetry = { path = "../../crates/download-telemetry" }
+serde_json.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+uuid.workspace = true

@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "NexDownload",
+  "version": "0.1.0",
+  "description": "Send browser downloads to a local NexDownload instance.",
+  "homepage_url": "https://github.com/ReffkiAndreaPratama/nexdownload",
+  "minimum_chrome_version": "110",
+  "permissions": ["downloads", "storage", "contextMenus", "notifications"],
+  "host_permissions": ["http://127.0.0.1/*", "http://localhost/*"],
+  "optional_host_permissions": ["http://*/*", "https://*/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "NexDownload",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "32": "icons/icon32.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "32": "icons/icon32.png",
+    "128": "icons/icon128.png"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}

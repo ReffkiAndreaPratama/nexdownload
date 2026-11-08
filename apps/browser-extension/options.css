@@ -1,0 +1,229 @@
+:root {
+  color-scheme: dark;
+  --bg: #080c14;
+  --panel: #101826;
+  --border: #233149;
+  --text: #edf3ff;
+  --muted: #91a1b9;
+  --subtle: #64748b;
+  --accent: #4f8cff;
+  --accent-strong: #2f6fe8;
+  --success: #36d399;
+  --danger: #fb7185;
+  font-family: "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(79, 140, 255, 0.2), transparent 38%),
+    radial-gradient(circle at 100% 100%, rgba(54, 211, 153, 0.09), transparent 30%),
+    var(--bg);
+  font-size: 14px;
+}
+
+main {
+  width: min(720px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 40px 0 56px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+header img {
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+h1 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: -0.03em;
+}
+
+header p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.card {
+  margin: 0 0 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(22, 34, 53, 0.85), rgba(16, 24, 38, 0.92));
+}
+
+h2 {
+  margin: 0 0 16px;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
+
+label {
+  display: block;
+  margin: 0 0 7px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+input[type="url"],
+input[type="password"] {
+  width: 100%;
+  margin: 0 0 8px;
+  padding: 10px 11px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  outline: none;
+  color: var(--text);
+  background: rgba(8, 12, 20, 0.65);
+  font: inherit;
+  font-size: 13px;
+}
+
+input[type="url"]:focus,
+input[type="password"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.16);
+}
+
+.hint {
+  margin: 0 0 18px;
+  color: var(--subtle);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.hint code {
+  color: var(--muted);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 11px;
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 10px;
+  border: 1px solid rgba(35, 49, 73, 0.75);
+  border-radius: 10px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.check:last-child {
+  margin-bottom: 0;
+}
+
+.check input {
+  margin-top: 3px;
+  accent-color: var(--accent);
+}
+
+.check span {
+  display: block;
+}
+
+.check strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.check small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0 10px;
+}
+
+button {
+  font: inherit;
+}
+
+.primary,
+.secondary {
+  padding: 9px 14px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.primary {
+  color: white;
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+}
+
+.primary:hover,
+.secondary:hover {
+  filter: brightness(1.08);
+}
+
+.secondary {
+  border-color: var(--border);
+  color: var(--text);
+  background: #162235;
+}
+
+.link-button {
+  padding: 9px 4px;
+  border: 0;
+  color: var(--accent);
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+}
+
+.status {
+  min-height: 22px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.status.success {
+  color: var(--success);
+}
+
+.status.error {
+  color: var(--danger);
+}
+
+.security h2 {
+  color: var(--muted);
+}
+
+.security p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}

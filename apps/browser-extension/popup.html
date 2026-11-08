@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NexDownload</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img src="icons/icon32.png" alt="" width="28" height="28" />
+        <div>
+          <strong>NexDownload</strong>
+          <span id="status" class="status">Checking local API…</span>
+        </div>
+      </div>
+      <button id="options" class="icon-button" type="button" title="Extension options" aria-label="Extension options">⚙</button>
+    </header>
+
+    <main>
+      <section id="setup" class="panel notice hidden">
+        <p class="notice-title">Connect the extension</p>
+        <p>Add your local NexDownload API URL and token in the extension options, then return here.</p>
+        <button id="open-options" class="primary" type="button">Open options</button>
+      </section>
+
+      <section id="error-panel" class="panel notice danger hidden">
+        <p class="notice-title">API unavailable</p>
+        <p id="error-text"></p>
+        <button id="retry" class="secondary" type="button">Retry</button>
+      </section>
+
+      <section id="overview" class="panel hidden">
+        <div class="metrics">
+          <div>
+            <span class="metric-label">Active</span>
+            <strong id="active-count">0</strong>
+          </div>
+          <div>
+            <span class="metric-label">Speed</span>
+            <strong id="speed">0 B/s</strong>
+          </div>
+          <div>
+            <span class="metric-label">Completed</span>
+            <strong id="completed-count">0</strong>
+          </div>
+        </div>
+        <ul id="recent" class="recent" aria-label="Recent downloads"></ul>
+      </section>
+
+      <form id="add-form" class="panel">
+        <label for="url">Download URL</label>
+        <input id="url" name="url" type="url" required placeholder="https://example.com/file.zip" autocomplete="off" />
+        <label for="file-name">File name <span class="optional">optional</span></label>
+        <input id="file-name" name="file-name" type="text" placeholder="Leave empty to infer from the URL" autocomplete="off" />
+        <button id="add" class="primary" type="submit">Send to NexDownload</button>
+        <p id="form-message" class="form-message" role="status"></p>
+      </form>
+    </main>
+
+    <footer>
+      <button id="dashboard" class="link-button" type="button">Open dashboard</button>
+      <span id="version" class="version"></span>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

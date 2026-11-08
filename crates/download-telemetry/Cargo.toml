@@ -1,0 +1,12 @@
+[package]
+name = "download-telemetry"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Structured logging and redaction helpers for NexDownload"
+
+[dependencies]
+tracing.workspace = true
+tracing-subscriber.workspace = true
+url.workspace = true

@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Default capability for the main NexDownload window. Custom commands are registered by the Rust shell.",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}

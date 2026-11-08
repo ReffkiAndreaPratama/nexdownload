@@ -1,0 +1,70 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/download-core",
+    "crates/download-engine",
+    "crates/download-storage",
+    "crates/download-integrity",
+    "crates/download-rules",
+    "crates/download-scheduler",
+    "crates/download-api",
+    "crates/download-telemetry",
+    "apps/server",
+    "apps/desktop/src-tauri",
+]
+default-members = [
+    "crates/download-core",
+    "crates/download-engine",
+    "crates/download-storage",
+    "crates/download-integrity",
+    "crates/download-rules",
+    "crates/download-scheduler",
+    "crates/download-api",
+    "crates/download-telemetry",
+    "apps/server",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+license = "MIT"
+authors = ["NexDownload Contributors"]
+repository = "https://github.com/ReffkiAndreaPratama/nexdownload"
+homepage = "https://github.com/ReffkiAndreaPratama/nexdownload"
+
+[workspace.dependencies]
+async-trait = "0.1"
+axum = "0.8"
+bytes = "1"
+chrono = { version = "0.4", features = ["serde"] }
+directories = "6"
+futures-util = "0.3"
+hex = "0.4"
+http = "1"
+percent-encoding = "2"
+rand = "0.8"
+regex = "1"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "stream", "gzip", "brotli", "deflate", "charset", "http2"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+sqlx = { version = "0.8", default-features = false, features = ["runtime-tokio", "sqlite", "chrono", "macros", "migrate"] }
+thiserror = "2"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "fs", "io-util", "time", "sync", "signal", "net"] }
+tokio-util = "0.7"
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "trace", "fs", "limit"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+url = "2"
+uuid = { version = "1", features = ["v4", "serde"] }
+tempfile = "3"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
+
+[profile.dev]
+debug = "line-tables-only"
