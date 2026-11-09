@@ -36,6 +36,7 @@ default distribution.
 | tempfile | MIT OR Apache-2.0 |
 | tauri / tauri-build | MIT OR Apache-2.0 |
 | tauri-cli (`@tauri-apps/cli`, build-time) | Apache-2.0 OR MIT |
+| WebView2Loader.dll (Microsoft WebView2 Loader) | Microsoft WebView2 SDK redistribution terms |
 
 ## Frontend dependencies
 
@@ -71,6 +72,10 @@ default distribution.
   runtime React packages and Tauri API.
 - The application icon is an original NexDownload asset and is not copied from a
   third-party download manager.
+- Windows bundles include `WebView2Loader.dll` from the Microsoft WebView2 SDK. It is
+  redistributed under Microsoft's WebView2 SDK terms and is not covered by NexDownload's
+  MIT license. The loader is copied from the `webview2-com-sys` crate used to build the
+  desktop application.
 - The browser extension is original code and uses only browser extension APIs. It has
   no runtime third-party JavaScript dependencies.
 - The transitive Rust graph includes MPL-2.0 components used by webview/CSS tooling

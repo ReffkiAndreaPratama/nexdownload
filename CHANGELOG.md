@@ -58,6 +58,9 @@ All notable changes to NexDownload are documented here. The format is based on
   mobile cdylib/staticlib outputs, allows `cargo test --workspace` and non-bundled Tauri
   debug builds on Windows gnullvm, and keeps the desktop test binary under the portable
   linker export limit.
+- Windows installers now bundle `WebView2Loader.dll` next to the executable. The gnullvm
+  release build uses the dynamic WebView2 loader, so the previous NSIS and MSI packages
+  installed an executable that could not start.
 
 ### Security
 

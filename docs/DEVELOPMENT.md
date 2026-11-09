@@ -260,3 +260,9 @@ cargo build --release -p nexdownload-server
 Artifacts land under `target/release` and the Tauri bundle output. The release profile
 uses thin LTO, one codegen unit, and symbol stripping. Verify both the desktop binary and
 `nexdownloadd` against a fresh data directory before publishing.
+
+On Windows, `src-tauri/tauri.windows.conf.json` bundles
+`resources/WebView2Loader.dll` next to the executable. The gnullvm release build links
+the dynamic WebView2 loader, so both the installer and the portable ZIP must contain this
+DLL. After building, confirm that the installed directory contains
+`nexdownload-desktop.exe` and `WebView2Loader.dll` before publishing.

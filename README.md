@@ -34,6 +34,21 @@ extension, documentation, and CI are part of this repository.
 Not implemented yet: BitTorrent/magnet links, FTP/SFTP, HLS/DASH, media-site
 extraction, scheduled time windows, and cloud sync. See [ROADMAP](docs/ROADMAP.md).
 
+## Downloads
+
+Prebuilt Windows x64 packages are attached to the
+[v0.1.0 release](https://github.com/ReffkiAndreaPratama/nexdownload/releases/tag/v0.1.0):
+
+- **Installer:** `NexDownload_0.1.0_x64-setup.exe` (recommended). It installs the
+  application and can bootstrap the Microsoft Edge WebView2 Runtime if it is missing.
+- **Portable:** `NexDownload_0.1.0_x64-portable.zip`. Extract it and run
+  `NexDownload.exe`; keep `WebView2Loader.dll` next to the executable. The portable
+  package requires the WebView2 Runtime to be installed already.
+- **Headless server:** `nexdownloadd_0.1.0_x64.exe` for the browser-based client.
+- `SHA256SUMS.txt` contains checksums for every release asset.
+
+The MSI package is also published for managed Windows deployments.
+
 ## Features
 
 | Area | What works |
